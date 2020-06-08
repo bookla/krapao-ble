@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "90D3AA70-889C-43DE-A52A-57192AC237E6"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B929BBCC-CD91-4523-A1FC-4035684FF4C1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.0043859"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "537"
+            endingLineNumber = "537"
+            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C82B230D-112D-41DA-82EC-6EE23516BCEB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.0049289"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "808"
+            endingLineNumber = "808"
+            landmarkName = "MainViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7444A35F-DCDC-4AB4-86C6-C65CD8438F04"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.005301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "808"
+            endingLineNumber = "808"
+            landmarkName = "MainViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CFA06BDF-31C2-472F-98E8-588B009DAAFF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.005648"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "587"
+            endingLineNumber = "587"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0982F37E-F788-442A-91DF-F6FCD53F8B09"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.00598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "433"
+            endingLineNumber = "433"
+            landmarkName = "playSoundNow(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0982F37E-F788-442A-91DF-F6FCD53F8B09 - cd7a7f73062880d0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Krapao_Tracker.MainViewController.playSoundNow(Any) -&gt; ()"
+                  moduleName = "Krapao Tracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/book/Desktop/Tracker/Krapao%20Tracker/Krapao%20Tracker/MainViewController.swift"
+                  timestampString = "561994733.918756"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
+                  offsetFromSymbolStart = "232">
+               </Location>
+               <Location
+                  uuid = "0982F37E-F788-442A-91DF-F6FCD53F8B09 - cd7a7f73062880d0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Krapao_Tracker.MainViewController.playSoundNow(Any) -&gt; ()"
+                  moduleName = "Krapao Tracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/book/Desktop/Tracker/Krapao%20Tracker/Krapao%20Tracker/MainViewController.swift"
+                  timestampString = "561994733.923408"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
+                  offsetFromSymbolStart = "1904">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6953B3ED-6303-43AF-80CC-D6231642C84A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.006328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
+            landmarkName = "playSoundNow(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5547FCF5-38F1-401A-9EB1-B6BA7F0F0D0C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.006669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "427"
+            endingLineNumber = "427"
+            landmarkName = "playSoundNow(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B0176005-2A1E-474E-835F-AD665DB0B3A9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/pairViewController.swift"
+            timestampString = "565160909.268589"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BCE104A2-5D2E-4CE4-AF1E-34AD2C60F792"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/pairViewController.swift"
+            timestampString = "565160909.2686599"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A10443DE-7307-4D9F-B6A7-53E2016AE7FD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/pairViewController.swift"
+            timestampString = "565160909.268726"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D832762-8CB8-4168-B34F-ADC4F94AB88E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.007157"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "811"
+            endingLineNumber = "811"
+            landmarkName = "MainViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97852341-AB56-4341-8025-8F7BC2013239"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.00752"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "820"
+            endingLineNumber = "820"
+            landmarkName = "unpairStart()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F7E27A90-3AB8-4C02-BC8B-F808929C2AA5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/pairViewController.swift"
+            timestampString = "565160909.269003"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "peripheral(_:didDiscoverCharacteristicsFor:error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F7E27A90-3AB8-4C02-BC8B-F808929C2AA5 - 7175a5385da82a51"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Krapao_Tracker.pairViewController.peripheral(_: __C.CBPeripheral, didDiscoverCharacteristicsFor: __C.CBService, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "Krapao Tracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/book/Desktop/Tracker/Krapao%20Tracker/Krapao%20Tracker/pairViewController.swift"
+                  timestampString = "563979173.484393"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "788">
+               </Location>
+               <Location
+                  uuid = "F7E27A90-3AB8-4C02-BC8B-F808929C2AA5 - 7175a5385da82a51"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Krapao_Tracker.pairViewController.peripheral(_: __C.CBPeripheral, didDiscoverCharacteristicsFor: __C.CBService, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "Krapao Tracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/book/Desktop/Tracker/Krapao%20Tracker/Krapao%20Tracker/pairViewController.swift"
+                  timestampString = "563979173.488624"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "3548">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "936E2BA1-00C6-4AC9-9650-2B2200DFA857"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/pairViewController.swift"
+            timestampString = "565160909.269098"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "peripheral(_:didDiscoverCharacteristicsFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2CC05DAB-1500-4D8B-A3B5-9BAA3C5AA36D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/pairViewController.swift"
+            timestampString = "565160909.269219"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "peripheral(_:didWriteValueFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF481FAE-832A-4DDE-AA02-A4BA37C098B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/MainViewController.swift"
+            timestampString = "580375161.007997"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "614"
+            endingLineNumber = "614"
+            landmarkName = "levelFromRSSI(RSSI:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "830CEA15-6ECE-4FB1-8929-FB38F4B3EF7C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/pairViewController.swift"
+            timestampString = "565160909.269372"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "peripheral(_:didWriteValueFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68F9DD20-426B-49D5-8422-3820F90E4558"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Krapao Tracker/Settings.swift"
+            timestampString = "580375161.008394"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "tableView(_:didDeselectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

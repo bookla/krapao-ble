@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD293A49217DA71B001FE24B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD293A48217DA71B001FE24B /* MainViewController.swift */; };
+		FD293A4E217DC4CD001FE24B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD293A4D217DC4CD001FE24B /* MapKit.framework */; };
 		FD6E84AC217C09FC00ED7869 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E84AB217C09FC00ED7869 /* AppDelegate.swift */; };
 		FD6E84AE217C09FC00ED7869 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E84AD217C09FC00ED7869 /* ViewController.swift */; };
 		FD6E84B1217C09FC00ED7869 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD6E84AF217C09FC00ED7869 /* Main.storyboard */; };
 		FD6E84B4217C09FD00ED7869 /* Krapao_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD6E84B2217C09FD00ED7869 /* Krapao_Tracker.xcdatamodeld */; };
 		FD6E84B6217C09FE00ED7869 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD6E84B5217C09FE00ED7869 /* Assets.xcassets */; };
 		FD6E84B9217C09FE00ED7869 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD6E84B7217C09FE00ED7869 /* LaunchScreen.storyboard */; };
+		FD6E84C1217C0B6D00ED7869 /* pairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E84C0217C0B6D00ED7869 /* pairViewController.swift */; };
+		FD772C0E21ACE11D00D88641 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD772C0D21ACE11D00D88641 /* File.swift */; };
+		FD89EDDA2428A6E50099B51E /* testTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD89EDD92428A6E50099B51E /* testTableViewController.swift */; };
+		FDB568EC2191A7800088D397 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB568EB2191A7800088D397 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD293A48217DA71B001FE24B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		FD293A4D217DC4CD001FE24B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FD6E84A8217C09FC00ED7869 /* Krapao Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Krapao Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD6E84AB217C09FC00ED7869 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD6E84AD217C09FC00ED7869 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +32,10 @@
 		FD6E84B5217C09FE00ED7869 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD6E84B8217C09FE00ED7869 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD6E84BA217C09FF00ED7869 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD6E84C0217C0B6D00ED7869 /* pairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pairViewController.swift; sourceTree = "<group>"; };
+		FD772C0D21ACE11D00D88641 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		FD89EDD92428A6E50099B51E /* testTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTableViewController.swift; sourceTree = "<group>"; };
+		FDB568EB2191A7800088D397 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +43,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD293A4E217DC4CD001FE24B /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD293A4A217DC4BA001FE24B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD293A4D217DC4CD001FE24B /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FD6E849F217C09FC00ED7869 = {
 			isa = PBXGroup;
 			children = (
 				FD6E84AA217C09FC00ED7869 /* Krapao Tracker */,
 				FD6E84A9217C09FC00ED7869 /* Products */,
+				FD293A4A217DC4BA001FE24B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,9 +78,14 @@
 		FD6E84AA217C09FC00ED7869 /* Krapao Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				FDB568EB2191A7800088D397 /* Settings.swift */,
 				FD6E84AB217C09FC00ED7869 /* AppDelegate.swift */,
 				FD6E84AD217C09FC00ED7869 /* ViewController.swift */,
 				FD6E84AF217C09FC00ED7869 /* Main.storyboard */,
+				FD293A48217DA71B001FE24B /* MainViewController.swift */,
+				FD772C0D21ACE11D00D88641 /* File.swift */,
+				FD6E84C0217C0B6D00ED7869 /* pairViewController.swift */,
+				FD89EDD92428A6E50099B51E /* testTableViewController.swift */,
 				FD6E84B5217C09FE00ED7869 /* Assets.xcassets */,
 				FD6E84B7217C09FE00ED7869 /* LaunchScreen.storyboard */,
 				FD6E84BA217C09FF00ED7869 /* Info.plist */,
@@ -99,6 +126,14 @@
 				TargetAttributes = {
 					FD6E84A7217C09FC00ED7869 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -140,7 +175,12 @@
 			files = (
 				FD6E84B4217C09FD00ED7869 /* Krapao_Tracker.xcdatamodeld in Sources */,
 				FD6E84AE217C09FC00ED7869 /* ViewController.swift in Sources */,
+				FD772C0E21ACE11D00D88641 /* File.swift in Sources */,
+				FD6E84C1217C0B6D00ED7869 /* pairViewController.swift in Sources */,
 				FD6E84AC217C09FC00ED7869 /* AppDelegate.swift in Sources */,
+				FDB568EC2191A7800088D397 /* Settings.swift in Sources */,
+				FD293A49217DA71B001FE24B /* MainViewController.swift in Sources */,
+				FD89EDDA2428A6E50099B51E /* testTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,17 +326,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 85V452G769;
+				DEVELOPMENT_TEAM = 96ZWN3H5LD;
 				INFOPLIST_FILE = "Krapao Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Book-Lailert.Krapao-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Book-Lailert.Krapao";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -304,17 +346,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 85V452G769;
+				DEVELOPMENT_TEAM = 96ZWN3H5LD;
 				INFOPLIST_FILE = "Krapao Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Book-Lailert.Krapao-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Book-Lailert.Krapao";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
