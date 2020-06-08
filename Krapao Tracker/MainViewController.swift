@@ -50,6 +50,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         startLocationUpdate()
         setupBluetooth()
         
+        self.RSSIText.text = "N/A"
+        self.distanceDisplay.text = "N/A"
+        infoView.layer.cornerRadius = 9
+        infoView.clipsToBounds = true
         // Do any additional setup after loading the view.
     }
     
@@ -57,10 +61,9 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     func setupUI() {
         loadImage()
         distanceDisplay.isHidden = false
-        signalProgress.transform = signalProgress.transform.scaledBy(x: 1, y: 15)
+        //signalProgress.transform = signalProgress.transform.scaledBy(x: 1, y: 15)
         bagPicture.imageView?.contentMode = .scaleAspectFit
         imagePicker.delegate = self
-        settingsView.isHidden = true
         centerPosition.layer.cornerRadius = 10
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { (nil) in
             self.checkStatusText()
@@ -98,7 +101,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     @IBOutlet var signalProgress: UIProgressView!
-    @IBOutlet var status: UINavigationItem!
+    @IBOutlet var status: UILabel!
     @IBOutlet var RSSIText: UILabel!
     @IBOutlet var trackerName: UIButton!
     @IBOutlet var bagPicture: UIButton!
@@ -106,7 +109,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     @IBOutlet var soundStatus: UIButton!
     @IBOutlet var settingsButton: UIButton!
     @IBOutlet var centerPosition: UIView!
-    @IBOutlet var settingsView: UIView!
     
     
     
@@ -467,7 +469,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     override func viewDidAppear(_ animated: Bool) {
-        status.title = "Searching..."
+        status.text = "Searching..."
         self.soundStatus.setTitleColor(UIColor.gray, for: .normal)
         self.soundStatus.isEnabled = false
         handleMap()
@@ -480,7 +482,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if state {
                 self.centralManager?.scanForPeripherals(withServices: [CBUUID(string: BLEService)])
             } else {
-                self.status.title = "Bluetooth Unavailable"
+                self.status.text = "Bluetooth Unavailable"
             }
         }
         
@@ -502,17 +504,17 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if state {
                 if (self.centralManager?.isScanning)! {
                     self.centralManager?.stopScan()
-                    self.status.title = "Disconnected"
+                    self.status.text = "Disconnected"
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (nil) in
                         (self.centralManager?.scanForPeripherals(withServices: [CBUUID(string: self.BLEService)], options: nil))!
-                        self.status.title = "Searching...."
+                        self.status.text = "Searching...."
                     }
                 } else if !connected {
                     (self.centralManager?.scanForPeripherals(withServices: [CBUUID(string: self.BLEService)], options: nil))!
-                    self.status.title = "Searching...."
+                    self.status.text = "Searching...."
                 } else if connected {
                     self.centralManager?.cancelPeripheralConnection(self.bagTracker!)
-                    self.status.title = "Searching...."
+                    self.status.text = "Searching...."
                     (self.centralManager?.scanForPeripherals(withServices: [CBUUID(string: self.BLEService)], options: nil))!
                     
                 }
@@ -526,7 +528,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         DispatchQueue.main.async {
-            self.status.title = "Connecting..."
+            self.status.text = "Connecting..."
         }
         if UserDefaults().bool(forKey: "devicePaired") {
             print(peripheral)
@@ -544,7 +546,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         DispatchQueue.main.async {
             self.soundStatus.setTitleColor(self.view.tintColor, for: .normal)
             self.soundStatus.isEnabled = true
-            self.status.title = "Connected"
+            self.status.text = "Connected"
             Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (nil) in
                 if self.connected {
                     peripheral.readRSSI()
@@ -634,14 +636,14 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     let distance:Double = Double(truncating: myRSSI.calculateDistance())
                     if myRSSI != 0 {
                         if distance < 1 || distance.isNaN {
-                            self.distanceDisplay.text = "Distance : <1 m"
+                            self.distanceDisplay.text = "<1 m"
                         } else {
-                            self.distanceDisplay.text = "Distance : " + String(describing: distance) + "m"
+                            self.distanceDisplay.text = String(describing: distance) + "m"
                         }
-                        self.RSSIText.text = "Signal Strength : " + String(describing: myRSSI) + "dB"
+                        self.RSSIText.text = String(describing: myRSSI) + "dB"
                     } else {
-                        self.RSSIText.text = "Signal Strength : Measuring..."
-                        self.distanceDisplay.text = "Distance : Calculating..."
+                        self.RSSIText.text = "N/A"
+                        self.distanceDisplay.text = "N/A"
                     }
                     self.signalProgress.progress = self.levelFromRSSI(RSSI: NSNumber(integerLiteral: myRSSI))
                 }
@@ -667,13 +669,13 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         DispatchQueue.main.async {
             self.signalProgress.progress = 0.0
             if bluetoothActive {
-                self.status.title = "Disconnected"
+                self.status.text = "Disconnected"
             } else {
-                self.status.title = "Bluetooth Unavailable"
+                self.status.text = "Bluetooth Unavailable"
                 self.alertUser(title: "Bluetooth Not Available!", subtitle: "Please turn on Bluetooth to stay connected to the tracker!", options: ["OK" : UIAlertAction.Style.cancel])
             }
-            self.RSSIText.text = "Signal Strength: N/A"
-            self.distanceDisplay.text = "Distance: N/A"
+            self.RSSIText.text = "N/A"
+            self.distanceDisplay.text = "N/A"
         }
         if bluetoothActive {
             self.notifyUser(titleText: "Tracker Disconnected", bodyText: "Tracker is now out of range")
@@ -690,17 +692,21 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if status2 {
                 print("Bluetooth ON")
                 if !central.isScanning {
-                    self.status.title = "Searching..."
+                    DispatchQueue.main.async {
+                        self.status.text = "Searching..."
+                    }
                     self.centralManager?.scanForPeripherals(withServices: [CBUUID(string: BLEService)])
                 }
             } else {
                 print("Bluetooth OFF")
                 handleDisconnection(bluetoothActive: false)
-                self.status.title = "Bluetooth Unavailable"
-                if connected {
-                    notifyUser(titleText: "Bluetooth turned off", bodyText: "Turn on Bluetooth to be notified when the device goes out of range!")
-                } else {
-                    notifyUser(titleText: "Bluetooth turned off", bodyText: "Turn on Bluetooth to be notified when the device comes in range!")
+                DispatchQueue.main.async {
+                    self.status.text = "Bluetooth Unavailable"
+                    if self.connected {
+                        self.notifyUser(titleText: "Bluetooth turned off", bodyText: "Turn on Bluetooth to be notified when the device goes out of range!")
+                    } else {
+                        self.notifyUser(titleText: "Bluetooth turned off", bodyText: "Turn on Bluetooth to be notified when the device comes in range!")
+                    }
                 }
             }
         }
@@ -845,14 +851,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     @IBAction func openSettings(_ sender: Any) {
         
-        if settingsView.isHidden {
-            settingsView.isHidden = false
-            settingsButton.setTitle("Close", for: .normal)
-            
-        } else {
-            settingsView.isHidden = true
-            settingsButton.setTitle("Settings", for: .normal)
-        }
+
         
     }
     
@@ -873,15 +872,15 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     func checkStatusText() {
-        if (self.centralManager?.isScanning)! && self.status.title != "Searching..." && !connected {
-            self.status.title = "Searching..."
-        } else if !(self.centralManager?.isScanning)! && self.status.title != "Disconnected" {
-            if self.status.title != "Bluetooth Unavailable" && self.status.title != "Connected" {
-                self.status.title = "Disconnected"
+        if (self.centralManager?.isScanning)! && self.status.text != "Searching..." && !connected {
+            self.status.text = "Searching..."
+        } else if !(self.centralManager?.isScanning)! && self.status.text != "Disconnected" {
+            if self.status.text != "Bluetooth Unavailable" && self.status.text != "Connected" {
+                self.status.text = "Disconnected"
             }
         } else if (self.centralManager?.isScanning)! && connected {
             self.centralManager?.stopScan()
-            self.status.title = "Connected"
+            self.status.text = "Connected"
         }
         let stateChange = UserDefaults().bool(forKey: "stateChange")
         if stateChange {
@@ -907,6 +906,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     
+    @IBOutlet var infoView: UIVisualEffectView!
     
     
     

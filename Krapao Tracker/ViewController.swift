@@ -84,10 +84,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manualout.isHidden = true
-        text.isHidden = true
-        autoout.isHidden = true
-        //manualout.isHidden = true
+        DispatchQueue.main.async {
+            self.manualout.isHidden = true
+            self.text.isHidden = true
+            self.autoout.isHidden = true
+
+        }
+                //manualout.isHidden = true
         // Do any additional setup after loading the view, typically from a nib.
     }
     

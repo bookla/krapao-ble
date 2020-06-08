@@ -23,10 +23,6 @@ class Settings: UITableViewController {
     @IBOutlet var mapModeSelector: UISegmentedControl!
     
     
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
     @IBAction func mapMode(_ sender: Any) {
         UserDefaults().set(mapModeSelector.selectedSegmentIndex, forKey: "mapMode")
         UserDefaults().set(true, forKey: "stateChange")
