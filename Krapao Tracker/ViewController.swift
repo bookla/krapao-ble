@@ -72,7 +72,6 @@ class ViewController: UIViewController {
     
     @IBOutlet var text: UILabel!
     @IBOutlet var autoout: UIButton!
-    @IBOutlet var manualout: UIButton!
     @IBAction func auto(_ sender: Any) {
         self.performSegue(withIdentifier: "startPairing", sender: nil)
     }
@@ -85,7 +84,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
-            self.manualout.isHidden = true
             self.text.isHidden = true
             self.autoout.isHidden = true
 

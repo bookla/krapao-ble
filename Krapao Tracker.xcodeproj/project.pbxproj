@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD0BC7B7248FD2D400505B74 /* PairingStagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0BC7B6248FD2D400505B74 /* PairingStagesViewController.swift */; };
 		FD293A49217DA71B001FE24B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD293A48217DA71B001FE24B /* MainViewController.swift */; };
 		FD293A4E217DC4CD001FE24B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD293A4D217DC4CD001FE24B /* MapKit.framework */; };
 		FD6E84AC217C09FC00ED7869 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6E84AB217C09FC00ED7869 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD0BC7B6248FD2D400505B74 /* PairingStagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingStagesViewController.swift; sourceTree = "<group>"; };
 		FD293A48217DA71B001FE24B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FD293A4D217DC4CD001FE24B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FD6E84A8217C09FC00ED7869 /* Krapao Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Krapao Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 				FD6E84AB217C09FC00ED7869 /* AppDelegate.swift */,
 				FD6E84AD217C09FC00ED7869 /* ViewController.swift */,
 				FD6E84AF217C09FC00ED7869 /* Main.storyboard */,
+				FD0BC7B6248FD2D400505B74 /* PairingStagesViewController.swift */,
 				FD293A48217DA71B001FE24B /* MainViewController.swift */,
 				FD772C0D21ACE11D00D88641 /* File.swift */,
 				FD6E84C0217C0B6D00ED7869 /* pairViewController.swift */,
@@ -126,6 +129,7 @@
 				TargetAttributes = {
 					FD6E84A7217C09FC00ED7869 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1150;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -179,6 +183,7 @@
 				FD6E84C1217C0B6D00ED7869 /* pairViewController.swift in Sources */,
 				FD6E84AC217C09FC00ED7869 /* AppDelegate.swift in Sources */,
 				FDB568EC2191A7800088D397 /* Settings.swift in Sources */,
+				FD0BC7B7248FD2D400505B74 /* PairingStagesViewController.swift in Sources */,
 				FD293A49217DA71B001FE24B /* MainViewController.swift in Sources */,
 				FD89EDDA2428A6E50099B51E /* testTableViewController.swift in Sources */,
 			);
@@ -338,7 +343,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Book-Lailert.Krapao";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -359,7 +364,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Book-Lailert.Krapao";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -20,7 +20,7 @@ extension Int {
             calibration = 9
         }
         if minimumVal == 0 {
-            minimumVal = 55
+            minimumVal = 44
         }
         if logVal == Float(0) {
             logVal = Float(2)
@@ -30,7 +30,7 @@ extension Int {
         let calibrateVal:Double = Double(calibration)/Double(100)
         distance = distance*calibrateVal
         distance = pow(distance, Double(logVal))
-        return NSNumber(floatLiteral: Double(round(distance*2)/2))
+        return NSNumber(floatLiteral: Double(round(distance*10)/10))
     }
 }
 

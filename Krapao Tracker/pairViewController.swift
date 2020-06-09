@@ -68,12 +68,21 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            self.welcomeText.alpha = 0.0
+            self.pleaseWait.alpha = 0.0
+            self.activityFinish.alpha = 0.0
+        }
         let centralQueue: DispatchQueue = DispatchQueue(label: "com.Book-Lailert.centralQueueName", attributes: .concurrent)
+        self.statusView.transform = CGAffineTransform(translationX: 0, y: view.frame.height)
+        self.statusView.layer.cornerRadius = 22
+        self.statusView.clipsToBounds = true
         
         centralManager = CBCentralManager(delegate: self, queue: centralQueue)
         
         // Do any additional setup after loading the view.
     }
+    
     
     func deactivateTimer(timer: Timer){
         timer.invalidate()
@@ -89,6 +98,7 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             DispatchQueue.main.async {
                 self.progress.progress = 0.4
                 self.status.text = "Connecting"
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changePage"), object: nil, userInfo: ["pageNumber": 3])
                 Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (nil) in
                     
                 }
@@ -99,6 +109,15 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             bagTracker?.delegate = self
             centralManager?.stopScan()
             DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
+                    self.statusView.transform = CGAffineTransform(translationX: 0, y: self.view.frame.height)
+                }, completion: nil)
+                UIView.animate(withDuration: 1.0) {
+                    self.welcomeText.alpha = 1.0
+                    self.pleaseWait.alpha = 1.0
+                    self.activityFinish.alpha = 1.0
+                    self.cover.alpha = 0.0
+                }
                 self.progress.progress = 1.0
                 UserDefaults().set(true, forKey: "devicePaired")
                 self.status.text = "Paired Successfully"
@@ -121,6 +140,7 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if !self.paired {
                 self.progress.progress = 0.5
                 self.status.text = "Pairing"
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changePage"), object: nil, userInfo: ["pageNumber": 4])
             }
         }
         if !paired {
@@ -170,6 +190,7 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 self.progress.progress = 0.7
                 self.activity.stopAnimating()
                 self.status.text = "Applying changes..."
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changePage"), object: nil, userInfo: ["pageNumber": 5])
             })
             Timer.scheduledTimer(withTimeInterval: 10, repeats: false, block: { (nil) in
                 print("Hi2")
@@ -177,6 +198,7 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 self.activity.startAnimating()
                 self.progress.progress = 0.9
                 self.status.text = "Reconnecting..."
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changePage"), object: nil, userInfo: ["pageNumber": 6])
                 self.paired = true
                 self.reconnectAfterPair(newID: actualUUID)
             })
@@ -191,14 +213,21 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if !bluetoothStatus {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
+                self.statusView.transform = .identity
+            }, completion: nil)
+        }
         
+        
+        if !bluetoothStatus {
             bluetoothOffAlert()
             recheckBT = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (nil) in
                 if self.bluetoothStatus {
                     self.deactivateTimer(timer: self.recheckBT)
                     self.progress.progress = 0.2
                     self.status.text = "Scanning for device"
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changePage"), object: nil, userInfo: ["pageNumber": 2])
                     self.centralManager?.scanForPeripherals(withServices: [self.bleService])
                     self.activity.startAnimating()
                 }
@@ -206,11 +235,21 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         } else {
             progress.progress = 0.2
             status.text = "Scanning for device"
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changePage"), object: nil, userInfo: ["pageNumber": 2])
             centralManager?.scanForPeripherals(withServices: [bleService])
             activity.startAnimating()
         }
     }
 
+    @IBOutlet var statusView: UIView!
+    
+    
+    @IBOutlet var cover: UIVisualEffectView!
+    @IBOutlet var welcomeText: UILabel!
+    @IBOutlet var pleaseWait: UILabel!
+    @IBOutlet var activityFinish: UIActivityIndicatorView!
+    
+    
     /*
     // MARK: - Navigation
 

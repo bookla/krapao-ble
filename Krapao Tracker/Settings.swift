@@ -16,6 +16,7 @@ class Settings: UITableViewController {
         if indexPath.section == 1{
             UserDefaults().set(true, forKey: "unpair")
             UserDefaults().set(true, forKey: "stateChange")
+            self.dismiss(animated: true, completion: nil)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -45,7 +46,7 @@ class Settings: UITableViewController {
         } else {
             mapModeSelector.selectedSegmentIndex = 0
         }
-        deviceID.text = "TestDevice"
+        deviceID.text = UserDefaults().string(forKey: "deviceUUID")!
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

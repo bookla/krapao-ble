@@ -45,13 +45,15 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         setupUI()
         setupLocation()
         startLocationUpdate()
         setupBluetooth()
         
-        self.RSSIText.text = "N/A"
-        self.distanceDisplay.text = "N/A"
+        self.RSSIText.text = "Not Connected"
+        self.distanceDisplay.text = "Not Connected"
         infoView.layer.cornerRadius = 9
         infoView.clipsToBounds = true
         // Do any additional setup after loading the view.
@@ -431,7 +433,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             let data = messageText.data(using: .utf8)
             playingSound = true
             soundStatus.setTitleColor(UIColor.gray, for: .normal)
-            soundStatus.setTitle("Requested Sound", for: .normal)
+            soundStatus.setTitle(" Requested Sound", for: .normal)
             self.bagTracker!.writeValue(data!, for: (self.bagTracker?.services?.first?.characteristics?.first)!, type: CBCharacteristicWriteType.withoutResponse)
             var count = 0
             if connected {
@@ -443,7 +445,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     if count > 3 {
                         self.alertUser(title: "Play Sound Failed", subtitle: "Please try again later.", options: ["OK" : UIAlertAction.Style.cancel])
                         self.soundStatus.setTitleColor(self.view.tintColor, for: .normal)
-                        self.soundStatus.setTitle("Play Sound", for: .normal)
+                        self.soundStatus.setTitle(" Play Sound", for: .normal)
                         myTimer.invalidate()
                     }
                     
@@ -452,7 +454,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             }
         } else {
             soundStatus.setTitleColor(view.tintColor, for: .normal)
-            soundStatus.setTitle("Play Sound", for: .normal)
+            soundStatus.setTitle(" Play Sound", for: .normal)
         }
     }
     
@@ -469,9 +471,22 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     override func viewDidAppear(_ animated: Bool) {
+    
+        
+        if !UserDefaults.standard.bool(forKey: "devicePaired") {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "restart2", sender: nil)
+            }
+        }
+        self.soundStatus.isEnabled = false
+        
+        DispatchQueue.main.async {
+            self.reconnect()
+        }
+        
+        
         status.text = "Searching..."
         self.soundStatus.setTitleColor(UIColor.gray, for: .normal)
-        self.soundStatus.isEnabled = false
         handleMap()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
@@ -499,7 +514,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     //BLUETOOTH     BLUETOOTH     BLUETOOTH
     
     
-    @IBAction func retry(_ sender: Any) {
+    func reconnect() {
         checkBluetoothStatus(central: centralManager!) { (state) in
             if state {
                 if (self.centralManager?.isScanning)! {
@@ -522,6 +537,11 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 self.alertUser(title: "Bluetooth Not Available!", subtitle: "Please turn on Bluetooth to proceed", options: ["OK" : UIAlertAction.Style.cancel])
             }
         }
+    }
+    
+    
+    @IBAction func retry(_ sender: Any) {
+        self.reconnect()
     }
     
     
@@ -576,8 +596,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if dataString!.range(of: "Playing sound") != nil {
                 print("Sound Playing")
                 DispatchQueue.main.async {
-                    self.soundStatus.setTitle("Sound Playing", for: .normal)
-                    self.soundStatus.setTitleColor(UIColor.black, for: .normal)
+                    self.soundStatus.setTitle(" Sound Playing", for: .normal)
                     self.soundStatus.isEnabled = false
                 }
                 playingSound = false
@@ -590,7 +609,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if dataString == "Play Sound successfu" {
                 print("Played Sound")
                 DispatchQueue.main.async {
-                    self.soundStatus.setTitle("Play Sound", for: .normal)
+                    self.soundStatus.setTitle(" Play Sound", for: .normal)
                     self.soundStatus.setTitleColor(self.view.tintColor, for: .normal)
                     self.soundStatus.isEnabled = true
                 }
@@ -628,7 +647,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if state && error == nil {
                 RSSIlist.append(Int(truncating: RSSI))
                 var myRSSI = 0
-                if RSSIlist.count == 10 {
+                if RSSIlist.count == 5 {
                     myRSSI = Int(truncating: NSNumber(integerLiteral: Int(RSSIlist.average)))
                     RSSIlist.removeFirst()
                 }
@@ -642,8 +661,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                         }
                         self.RSSIText.text = String(describing: myRSSI) + "dB"
                     } else {
-                        self.RSSIText.text = "N/A"
-                        self.distanceDisplay.text = "N/A"
+                        self.RSSIText.text = String(describing: RSSI) + "dB"
+                        self.distanceDisplay.text = "Calculating"
                     }
                     self.signalProgress.progress = self.levelFromRSSI(RSSI: NSNumber(integerLiteral: myRSSI))
                 }
@@ -674,8 +693,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 self.status.text = "Bluetooth Unavailable"
                 self.alertUser(title: "Bluetooth Not Available!", subtitle: "Please turn on Bluetooth to stay connected to the tracker!", options: ["OK" : UIAlertAction.Style.cancel])
             }
-            self.RSSIText.text = "N/A"
-            self.distanceDisplay.text = "N/A"
+            self.RSSIText.text = "Not Connected"
+            self.distanceDisplay.text = "Not Connected"
         }
         if bluetoothActive {
             self.notifyUser(titleText: "Tracker Disconnected", bodyText: "Tracker is now out of range")
