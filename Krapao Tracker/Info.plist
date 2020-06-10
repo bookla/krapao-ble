@@ -19,15 +19,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.4</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<false/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>To communicate with the tracker even in the background</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>To connect to the bag tracker and measure the signal strenght and notify you when it disconnects</string>
+	<string>To communicate with the tracker</string>
 	<key>NSCameraUsageDescription</key>
 	<string>To take a picture that will be representing your bag</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

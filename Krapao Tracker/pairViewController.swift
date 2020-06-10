@@ -227,7 +227,7 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
         
         if !bluetoothStatus {
-            bluetoothOffAlert()
+            //bluetoothOffAlert()
             recheckBT = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (nil) in
                 if self.bluetoothStatus {
                     self.deactivateTimer(timer: self.recheckBT)

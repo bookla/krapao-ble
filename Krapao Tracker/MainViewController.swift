@@ -348,7 +348,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     func showOption() {
-        let alert = UIAlertController(title: "Change tracker image", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Change Image", message: "Choose the image shown at the top of the screen", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
             self.imageFromCamera()
@@ -364,9 +364,11 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: {
+                print("completion block")
+            })
+        }
     }
     
     
@@ -851,6 +853,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         if connected {
             let messageText = "disconnect"
             let data = messageText.data(using: .utf8)
+            UserDefaults().set(false, forKey: "devicePaired")
+            UserDefaults().set("0x0000", forKey: "deviceUUID")
             bagTracker?.writeValue(data!, for: (bagTracker?.services?.first?.characteristics?.first)!, type: CBCharacteristicWriteType.withoutResponse)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (nil) in
                 self.centralManager?.cancelPeripheralConnection(self.bagTracker!)
