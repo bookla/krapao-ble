@@ -41,8 +41,11 @@ class ViewController: UIViewController {
         case .poweredOn:
             print("Bluetooth status is POWERED ON")
             completion(true)
+        default:
+            print("UNKNOWN OPTION")
         }
     }
+    
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         checkBluetoothStatus(central: central) { (status) in

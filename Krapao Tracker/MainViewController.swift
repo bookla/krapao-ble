@@ -13,7 +13,7 @@ import CoreLocation
 import MapKit
 import Photos
 
-class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate {
+class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, MKMapViewDelegate {
     
     var centralManager: CBCentralManager?
     var BLEService = ""
@@ -52,6 +52,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         startLocationUpdate()
         setupBluetooth()
         
+        self.mapView.delegate = self
         self.RSSIText.text = "Not Connected"
         self.distanceDisplay.text = "Not Connected"
         infoView.layer.cornerRadius = 9
@@ -157,7 +158,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         if !connected {
             if let latitude = UserDefaults().string(forKey: "lastLat") {
                 if let longitude = UserDefaults().string(forKey: "lastLong") {
-                    let annotation = MKPointAnnotation()
+                    let annotation = CustomAnnotation()
                     let noLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(Double(latitude)!), longitude: CLLocationDegrees(Double(longitude)!))
                     print(noLocation)
                     annotation.coordinate = noLocation
@@ -312,6 +313,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         case .denied:
             // same same
             print("User has denied the permission.")
+        default:
+            print("UNKNOWN OPTION")
         }
     }
     
@@ -481,7 +484,9 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         self.soundStatus.isEnabled = false
         
         DispatchQueue.main.async {
-            self.reconnect()
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (nil) in
+                self.reconnect()
+            }
         }
         
         
@@ -564,6 +569,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         connected = true
         DispatchQueue.main.async {
+            self.mapView.showsUserLocation = false
+            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (nil) in
+                self.mapView.showsUserLocation = true
+            }
             self.soundStatus.setTitleColor(self.view.tintColor, for: .normal)
             self.soundStatus.isEnabled = true
             self.status.text = "Connected"
@@ -755,6 +764,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         case .poweredOn:
             print("Bluetooth status is POWERED ON")
             completion(true)
+        default:
+            print("UNKNOWN OPTION")
         }
     }
     
@@ -858,7 +869,28 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     //UNPAIR     UNPAIR     UNPAIR    UNPAIR   UNPAIR
     
     
-    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseIdentifier = "pin"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
+        }
+        if !(annotation is MKUserLocation) {
+            annotationView?.image = UIImage(named: "krapaoGray")!.resizeImage(45.0, opaque: false)
+        } else {
+            annotationView?.image = UIImage(named: "krapaoGreen")!.resizeImage(45.0, opaque: false)
+            if !connected {
+                return nil
+            }
+            return annotationView
+        }
+        
+        return annotationView
+    }
     
     
     

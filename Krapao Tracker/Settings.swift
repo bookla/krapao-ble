@@ -13,7 +13,7 @@ class Settings: UITableViewController {
     let vc = MainViewController()
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1{
+        if indexPath.section == 2 && indexPath.row == 1{
             UserDefaults().set(true, forKey: "unpair")
             UserDefaults().set(true, forKey: "stateChange")
             self.dismiss(animated: true, completion: nil)

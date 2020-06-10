@@ -15,20 +15,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Paired Success" translatesAutoresizingMaskIntoConstraints="NO" id="34Q-6s-Jb3">
-                                <rect key="frame" x="20" y="267" width="374" height="372"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="34Q-6s-Jb3" secondAttribute="height" multiplier="187:186" id="Uuv-xZ-T7M"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-adaptive" translatesAutoresizingMaskIntoConstraints="NO" id="Zl0-GC-qYx">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="34Q-6s-Jb3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="5rV-0P-8WV"/>
-                            <constraint firstItem="34Q-6s-Jb3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Imk-Cf-ZGb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="34Q-6s-Jb3" secondAttribute="trailing" constant="20" id="dRd-cg-wox"/>
-                            <constraint firstItem="34Q-6s-Jb3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="oLB-eb-znN"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -38,6 +30,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Paired Success" width="2048" height="2048"/>
+        <image name="logo-adaptive" width="1216" height="778"/>
     </resources>
 </document>

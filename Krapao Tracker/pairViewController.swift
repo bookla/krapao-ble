@@ -40,6 +40,8 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         case .poweredOn:
             print("Bluetooth status is POWERED ON")
             completion(true)
+        default:
+            print("UNKNOWN OPTION")
         }
     }
     
@@ -72,6 +74,7 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             self.welcomeText.alpha = 0.0
             self.pleaseWait.alpha = 0.0
             self.activityFinish.alpha = 0.0
+            self.cover.alpha = 0.0
         }
         let centralQueue: DispatchQueue = DispatchQueue(label: "com.Book-Lailert.centralQueueName", attributes: .concurrent)
         self.statusView.transform = CGAffineTransform(translationX: 0, y: view.frame.height)
@@ -158,7 +161,9 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         print("WROTE DATA")
         print(characteristic)
-        print(error)
+        if let error = error {
+            print(error)
+        }
         print(characteristic)
     }
     
@@ -216,6 +221,7 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
                 self.statusView.transform = .identity
+                self.cover.alpha = 0.35
             }, completion: nil)
         }
         
@@ -244,7 +250,7 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     @IBOutlet var statusView: UIView!
     
     
-    @IBOutlet var cover: UIVisualEffectView!
+    @IBOutlet var cover: UIView!
     @IBOutlet var welcomeText: UILabel!
     @IBOutlet var pleaseWait: UILabel!
     @IBOutlet var activityFinish: UIActivityIndicatorView!

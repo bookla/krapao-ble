@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "krapao-transparent.png",
+      "filename" : "ItunesArtwork@2x copy.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "krapao-transparent-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "krapao-transparent-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
