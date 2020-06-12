@@ -38,6 +38,7 @@ class Settings: UITableViewController {
             limitActivation.setOn(true, animated: true)
             limitActivation.isEnabled = true
         }
+        UserDefaults().set(limitActivation.isOn, forKey: "notificationLimit")
     }
     
     @IBAction func notificationLimitToggle(_ sender: Any) {

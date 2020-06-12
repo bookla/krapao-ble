@@ -691,7 +691,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         var level = Float(truncating: RSSI) + Float(35)
         level = level/100
         level = level * -1
-        level = 1 - (Float(level) * 1.1)
+        level = 1 - (Float(level) * 1.4)
+        if level < 0 {
+            level = 0
+        }
         return level
     }
     
