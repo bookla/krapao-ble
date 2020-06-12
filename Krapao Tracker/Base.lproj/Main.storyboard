@@ -526,7 +526,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75c-5g-mww">
                                                     <rect key="frame" x="302" y="6" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="Notificationtoggle:" destination="jwi-QP-8ww" eventType="valueChanged" id="MTJ-FV-eQD"/>
+                                                        <action selector="notificationLimitToggle:" destination="jwi-QP-8ww" eventType="valueChanged" id="Saf-qX-REn"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -606,6 +606,7 @@
                     <navigationItem key="navigationItem" id="jpj-rj-vIK"/>
                     <connections>
                         <outlet property="deviceID" destination="2GY-7g-6GK" id="0V8-YB-HaJ"/>
+                        <outlet property="limitActivation" destination="75c-5g-mww" id="9hl-l1-Cqi"/>
                         <outlet property="mapModeSelector" destination="bqI-la-ZcP" id="qXU-5u-Xj8"/>
                         <outlet property="notificationActivation" destination="Yak-c5-141" id="GXl-Li-z7u"/>
                     </connections>

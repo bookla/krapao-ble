@@ -31,15 +31,37 @@ class Settings: UITableViewController {
     
     @IBAction func Notificationtoggle(_ sender: Any) {
         UserDefaults().set(notificationActivation.isOn, forKey: "notification")
+        if !notificationActivation.isOn {
+            limitActivation.setOn(false, animated: true)
+            limitActivation.isEnabled = false
+        } else {
+            limitActivation.setOn(true, animated: true)
+            limitActivation.isEnabled = true
+        }
+    }
+    
+    @IBAction func notificationLimitToggle(_ sender: Any) {
+        UserDefaults().set(limitActivation.isOn, forKey: "notificationLimit")
     }
     
     @IBOutlet var notificationActivation: UISwitch!
+
+    @IBOutlet var limitActivation: UISwitch!
+    
     
     @IBOutlet var deviceID: UILabel!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        limitActivation.isOn = UserDefaults().bool(forKey: "notificationLimit")
+        notificationActivation.isOn = UserDefaults().bool(forKey: "notification")
+        
+        if !notificationActivation.isOn {
+            limitActivation.isOn = false
+            limitActivation.isEnabled = false
+        }
+        
         let mapMode = UserDefaults().integer(forKey: "mapMode")
         if mapMode == 1 {
             mapModeSelector.selectedSegmentIndex = 1

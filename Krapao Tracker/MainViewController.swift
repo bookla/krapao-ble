@@ -148,29 +148,28 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     func handleMap() {
-        let mapMode = UserDefaults().integer(forKey: "mapMode")
-        if mapMode == 1 {
-            mapView.mapType = MKMapType.satellite
-        } else {
-            mapView.mapType = MKMapType.standard
-        }
-        mapView.showsUserLocation = true
-        if !connected {
-            if let latitude = UserDefaults().string(forKey: "lastLat") {
-                if let longitude = UserDefaults().string(forKey: "lastLong") {
-                    let annotation = CustomAnnotation()
-                    let noLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(Double(latitude)!), longitude: CLLocationDegrees(Double(longitude)!))
-                    print(noLocation)
-                    annotation.coordinate = noLocation
-                    annotation.title = "Last seen location"
-                    let viewRegion = MKCoordinateRegion(center: noLocation, latitudinalMeters: 200, longitudinalMeters: 200)
-                    mapView.addAnnotation(annotation)
-                    mapView.setRegion(viewRegion, animated: false)
-                }
+        DispatchQueue.main.async {
+            let mapMode = UserDefaults().integer(forKey: "mapMode")
+            if mapMode == 1 {
+                self.mapView.mapType = MKMapType.satellite
+            } else {
+                self.mapView.mapType = MKMapType.standard
             }
-        } else {
-            DispatchQueue.main.async {
-                self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.showsUserLocation = true
+            if !self.connected {
+                if let latitude = UserDefaults().string(forKey: "lastLat") {
+                    if let longitude = UserDefaults().string(forKey: "lastLong") {
+                        let annotation = CustomAnnotation()
+                        let noLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(Double(latitude)!), longitude: CLLocationDegrees(Double(longitude)!))
+                        print(noLocation)
+                        annotation.coordinate = noLocation
+                        annotation.title = "Last seen location"
+                        let viewRegion = MKCoordinateRegion(center: noLocation, latitudinalMeters: 200, longitudinalMeters: 200)
+                        self.mapView.addAnnotation(annotation)
+                        self.mapView.setRegion(viewRegion, animated: false)
+                    }
+                }
             }
         }
     }
@@ -196,6 +195,22 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             firstUpdate = false
             locationManager.stopUpdatingLocation()
         }
+        if !connected {
+            if UserDefaults().bool(forKey: "notification") {
+                if UserDefaults().bool(forKey: "nextTriggerConnect") {
+                    self.notifyUser(titleText: "Tracker Connected", bodyText: "Tracker is now in range")
+                    let nextNotificationTime = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
+                    UserDefaults().set(nextNotificationTime, forKey: "nextNotificationConnect")
+                    UserDefaults().set(false, forKey: "nextTriggerConnect")
+                }
+                if UserDefaults().bool(forKey: "nextTriggerDisconnect") {
+                    self.notifyUser(titleText: "Tracker Disconnected", bodyText: "Tracker is now out of range")
+                    let nextNotificationTime = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
+                    UserDefaults().set(nextNotificationTime, forKey: "nextNotificationDisconnect")
+                    UserDefaults().set(false, forKey: "nextTriggerDisconnect")
+                }
+            }
+        }
     }
     
     
@@ -219,6 +234,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     @IBAction func centerCurrentLocation(_ sender: Any) {
+        self.mapView.showsUserLocation = true
         if let userLocation = locationManager.location?.coordinate {
             let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 200, longitudinalMeters: 200)
             mapView.setRegion(viewRegion, animated: true)
@@ -433,7 +449,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     @IBAction func playSoundNow(_ sender: Any) {
-        if !playingSound {
+        if !playingSound && connected {
             let messageText = "Play Sound"
             let data = messageText.data(using: .utf8)
             playingSound = true
@@ -569,15 +585,18 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        connected = true
+        UserDefaults().set(false, forKey: "nextTriggerDisconnect")
         DispatchQueue.main.async {
-            self.mapView.showsUserLocation = false
-            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (nil) in
-                self.mapView.showsUserLocation = true
-            }
+            self.connected = true
             self.soundStatus.setTitleColor(self.view.tintColor, for: .normal)
             self.soundStatus.isEnabled = true
             self.status.text = "Connected"
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (nil) in
+                self.mapView.showsUserLocation = false
+                Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (nil) in
+                    self.mapView.showsUserLocation = true
+                }
+            }
             Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (nil) in
                 if self.connected {
                     peripheral.readRSSI()
@@ -588,7 +607,33 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             }
         }
         handleMap()
-        self.notifyUser(titleText: "Tracker Connected", bodyText: "Tracker is now in range")
+        
+        
+        //Notify
+        if UserDefaults().bool(forKey: "notification") {
+            if UserDefaults().bool(forKey: "notificationLimit") {
+                if let nextNotification = UserDefaults().object(forKey: "nextNotificationConnect") as? Date {
+                    if nextNotification < Date() {
+                        self.notifyUser(titleText: "Tracker Connected", bodyText: "Tracker is now in range")
+                        let nextNotificationTime = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
+                        UserDefaults().set(nextNotificationTime, forKey: "nextNotificationConnect")
+                    } else {
+                        UserDefaults().set(true, forKey: "nextTriggerConnect")
+                    }
+                } else {
+                    self.notifyUser(titleText: "Tracker Connected", bodyText: "Tracker is now in range")
+                    let nextNotificationTime = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
+                    UserDefaults().set(nextNotificationTime, forKey: "nextNotificationConnect")
+                }
+            } else {
+                self.notifyUser(titleText: "Tracker Connected", bodyText: "Tracker is now in range")
+                let nextNotificationTime = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
+                UserDefaults().set(nextNotificationTime, forKey: "nextNotificationConnect")
+            }
+        }
+        
+        
+        
         peripheral.discoverServices([CBUUID(string: self.BLEService)])
     }
     
@@ -686,6 +731,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        UserDefaults().set(false, forKey: "nextTriggerConnect")
         if !unpair {
             handleDisconnection(bluetoothActive: true)
         } else {
@@ -698,6 +744,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         connected = false
         DispatchQueue.main.async {
             self.signalProgress.progress = 0.0
+            self.mapView.showsUserLocation = false
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (nil) in
+                self.mapView.showsUserLocation = true
+            }
             if bluetoothActive {
                 self.status.text = "Disconnected"
             } else {
@@ -708,7 +758,27 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             self.distanceDisplay.text = "Not Connected"
         }
         if bluetoothActive {
-            self.notifyUser(titleText: "Tracker Disconnected", bodyText: "Tracker is now out of range")
+            if UserDefaults().bool(forKey: "notification") {
+                if UserDefaults().bool(forKey: "notificationLimit") {
+                    if let nextNotification = UserDefaults().object(forKey: "nextNotificationDisconnect") as? Date {
+                        if nextNotification < Date() {
+                            self.notifyUser(titleText: "Tracker Disconnected", bodyText: "Tracker is now out of range")
+                            let nextNotificationTime = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
+                            UserDefaults().set(nextNotificationTime, forKey: "nextNotificationDisconnect")
+                        } else {
+                            UserDefaults().set(true, forKey: "nextTriggerConnect")
+                        }
+                    } else {
+                        self.notifyUser(titleText: "Tracker Disconnected", bodyText: "Tracker is now out of range")
+                        let nextNotificationTime = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
+                        UserDefaults().set(nextNotificationTime, forKey: "nextNotificationDisconnect")
+                    }
+                } else {
+                    self.notifyUser(titleText: "Tracker Disconnected", bodyText: "Tracker is now out of range")
+                    let nextNotificationTime = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
+                    UserDefaults().set(nextNotificationTime, forKey: "nextNotificationDisconnect")
+                }
+            }
         }
         saveLocation = true
         locationManager.startUpdatingLocation()
@@ -823,6 +893,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     print(error as Any)
                 }
             }
+            
         }
     }
     

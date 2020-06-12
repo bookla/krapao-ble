@@ -202,6 +202,8 @@ class pairViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 self.centralManager?.cancelPeripheralConnection(peripheral)
                 self.activity.startAnimating()
                 self.progress.progress = 0.9
+                UserDefaults.standard.set(true, forKey: "notification")
+                UserDefaults.standard.set(true, forKey: "notificationLimit")
                 self.status.text = "Reconnecting..."
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changePage"), object: nil, userInfo: ["pageNumber": 6])
                 self.paired = true
