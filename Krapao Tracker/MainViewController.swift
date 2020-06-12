@@ -46,7 +46,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setupUI()
         setupLocation()
         startLocationUpdate()
